@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtFart drawing program</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-light">
+    <header>
+        <h1 class="logo">ArtFart</h1>
+        <small>The #1 art program for failing artists</small>
+    </header>
+    <div class="canvasContainer">
+        <canvas id="canvas">Canvas HTML element not supported</canvas>
+        <div class="buttons">
+            <button class="btn btn-primary" id="eraser" onclick="toggleEraser()">Eraser (off)</button>
+            <div class="btn btn-primary">Color picker <input type="color"  id="color" value="#000000" onchange="changeColor()"></div>
+            <div class="btn btn-primary">Drawing width <input type="number" id="drawingWidth" value="10" onchange="changeWidth()"></div>
+            <button class="btn btn-danger" onclick="let c = confirm('Are you sure you want to erase your painting?'); if (c) {ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height)}">Erase canvas</button>
+            <button class="btn btn-success" onclick="download()">Download image</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
