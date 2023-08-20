@@ -5,13 +5,16 @@ let drawWidth = 10
 let drawColor = "#000000"
 var wRatio = .75
 var hRatio = .75
+
 canvas.width = window.innerWidth * wRatio
 canvas.height = window.innerHeight * hRatio
 ctx.fillStyle = '#ffffff'
 ctx.fillRect(0,0,canvas.width,canvas.height)
+
 function id(id) {
     return document.getElementById(id)
 }
+
 function draw(e) {
     const rect = canvas.getBoundingClientRect();
     const elementRelativeX = e.clientX - rect.left
@@ -21,12 +24,15 @@ function draw(e) {
     ctx.fillStyle = drawColor
     ctx.fillRect(canvasRelativeX, canvasRelativeY, drawWidth, drawWidth)  
 }
+
 function changeColor() {
     drawColor = id('color').value
 }
+
 function changeWidth() {
     drawWidth = id('drawingWidth').value
 }
+
 function toggleEraser() {
     if (!eraser) {
         drawColor = "#ffffff"
@@ -38,16 +44,19 @@ function toggleEraser() {
         eraser = false
     }
 }
+
 function download() {
     const image = canvas.toDataURL();
     const link = document.createElement('a');
     link.href = image;
-    link.download = 'my_painting.jpg';
+    link.download = `${prompt('Save as') || 'my_painting'}.png`;
     link.click();
 }
-canvas.addEventListener("mousedown", () => {
-    canvas.addEventListener("mousemove", draw)
+
+canvas.addEventListener("pointerdown", () => {
+    canvas.addEventListener("pointermove", draw)
 })
-canvas.addEventListener("mouseup", () => {
-    canvas.removeEventListener("mousemove", draw)
+
+canvas.addEventListener("pointerup", () => {
+    canvas.removeEventListener("pointermove", draw)
 })
